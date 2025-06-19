@@ -1040,8 +1040,12 @@
                     const tuNumeroDeWhatsapp = '573192592949';
                     const whatsappURL = `https://wa.me/${tuNumeroDeWhatsapp}?text=${encodeURIComponent(message)}`;
 
-                    window.open(whatsappURL, '_blank');
+                    // --- CAMBIO IMPORTANTE PARA COMPATIBILIDAD MÓVIL ---
+                    // Redirige la página actual en lugar de abrir una nueva ventana.
+                    window.location.href = whatsappURL;
 
+                    // El resto del código de limpieza puede que no se ejecute si el usuario
+                    // cambia a WhatsApp inmediatamente, pero se ejecutará cuando vuelva.
                     toggleModal('payment-modal', false);
                     addressInput.value = '';
                     cart = [];
