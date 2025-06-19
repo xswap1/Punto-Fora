@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUNTO FORA - Luxury Style</title>
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ESTILOS GENERALES Y VARIABLES DE COLOR --- */
+        :root {
+            --color-fondo: #0F0F0F;
+            --color-tarjeta: #1a1a1a;
+            --color-texto-principal: #EAEAEA;
+            --color-texto-secundario: #a0a0a0;
+            --color-descuento: #25D366; /* Color para el descuento */
+            --color-tendencia: #E53935; /* NUEVO: Color para la insignia de tendencia */
+            --font-principal: 'Playfair Display', serif;
+            --font-secundaria: 'Montserrat', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-secundaria);
+            margin: 0;
+            background-color: var(--color-fondo);
+            color: var(--color-texto-principal);
+            overflow-x: hidden; /* Evita el scroll horizontal */
+        }
+
+        main {
+            padding-bottom: 100px; /* SOLUCIÓN: Añade espacio al final para scroll en mobile */
+        }
+
+        /* --- CABECERA Y NAVEGACIÓN --- */
+        header {
+            background-color: rgba(15, 15, 15, 0.7);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            color: var(--color-texto-principal);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-left, .header-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo {
+            font-family: var(--font-secundaria);
+            font-size: 1.5em;
+            font-weight: 500;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-texto-principal);
+            border-radius: 50%;
+            margin-left: 12px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--color-texto-secundario);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding-bottom: 5px;
+            border-bottom: 1px solid transparent;
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--color-texto-principal);
+        }
+        
+        nav a.active {
+             border-bottom-color: var(--color-texto-principal);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--color-texto-principal);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: var(--color-texto-principal);
+            color: var(--color-fondo);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.75em;
+            font-weight: 700;
+            border: 2px solid var(--color-fondo);
+        }
+
+        /* --- SECCIÓN HERO --- */
+        .hero {
+            min-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('Sin-título-1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #FFFFFF;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-principal);
+            font-weight: 500;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            line-height: 1;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        
+        .hero-title {
+            font-family: var(--font-principal);
+            font-weight: 900;
+            font-size: clamp(4rem, 15vw, 9rem);
+            line-height: 0.9;
+            margin: 0 0 50px 0;
+            text-transform: uppercase;
+        }
+        
+        .discounts-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+
+        .discount-item {
+            padding: 20px 30px;
+            border-radius: 4px;
+            width: 180px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .discount-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .discount-item p { margin: 0; line-height: 1.2; }
+        
+        .discount-amount {
+            font-family: var(--font-principal);
+            font-size: clamp(3.5rem, 10vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .discount-condition {
+            font-family: var(--font-secundaria);
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-weight: 400;
+            margin-top: 8px;
+        }
+        
+        .hero-button {
+            font-family: var(--font-secundaria);
+            background-color: #FFFFFF;
+            color: #0F0F0F;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .hero-button:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        /* --- GALERÍA DE PRODUCTOS --- */
+        .product-gallery {
+            padding: 60px 40px;
+        }
+
+        #women-products { display: none; }
+
+        .product-gallery h2 {
+            text-align: center;
+            font-family: var(--font-secundaria);
+            font-size: 2em;
+            font-weight: 500;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-texto-secundario);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--color-tarjeta);
+            border-radius: 4px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid #282828;
+            display: flex;
+            flex-direction: column;
+            position: relative; 
+        }
+
+        .product-card:hover { transform: translateY(-8px); }
+        .product-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+        .product-info { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-name {
+            font-family: var(--font-secundaria);
+            font-size: 1.1em;
+            font-weight: 500;
+            margin: 0 0 10px 0;
+            color: var(--color-texto-principal);
+            flex-grow: 1;
+        }
+        .product-price {
+            font-size: 1.2em;
+            color: var(--color-texto-principal);
+            margin: 0 0 20px 0;
+            font-weight: 400;
+        }
+        .add-to-cart-btn {
+            font-family: var(--font-secundaria);
+            background-color: transparent;
+            color: var(--color-texto-principal);
+            border: 1px solid var(--color-texto-principal);
+            padding: 10px 20px;
+            border-radius: 2px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .add-to-cart-btn:hover {
+            background-color: var(--color-texto-principal);
+            color: var(--color-fondo);
+        }
+
+        /* --- ESTILO PARA LA INSIGNIA DE TENDENCIA --- */
+        .trending-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--color-tendencia);
+            color: #FFFFFF;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 500;
+            font-family: var(--font-secundaria);
+            z-index: 10;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- ESTILOS MODAL DEL CARRITO Y PAGO --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: var(--color-tarjeta);
+            padding: 30px;
+            border-radius: 4px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #282828;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #282828;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-family: var(--font-principal);
+            font-size: 1.8em;
+        }
+
+        .close-modal-btn {
+            background: none;
+            border: none;
+            color: var(--color-texto-secundario);
+            font-size: 2em;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .cart-items-list {
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .cart-item-info { flex-grow: 1; }
+        .cart-item-info p { margin: 0; font-size: 0.9em; }
+        .cart-item-info .name { font-weight: 500; color: var(--color-texto-principal); }
+        .cart-item-info .price { color: var(--color-texto-secundario); margin-top: 5px; }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cart-item-actions input {
+            width: 40px;
+            text-align: center;
+            background-color: #333;
+            border: 1px solid #444;
+            color: var(--color-texto-principal);
+            border-radius: 2px;
+            padding: 5px;
+        }
+
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .cart-empty-message {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--color-texto-secundario);
+        }
+
+        .cart-footer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #282828;
+        }
+        
+        #cart-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1em;
+        }
+        .summary-line.discount-line span:first-child {
+            color: var(--color-descuento);
+        }
+        .summary-line.total-line {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--color-texto-principal);
+            color: var(--color-fondo);
+            border: none;
+            border-radius: 2px;
+            font-size: 1em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .checkout-btn:hover { background-color: #f0f0f0; }
+        .checkout-btn:disabled { background-color: #555; color: #888; cursor: not-allowed;}
+        
+        #payment-modal .modal-content { max-width: 400px; }
+        .payment-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .payment-option-btn {
+            padding: 20px;
+            background-color: #2a2a2a;
+            border: 1px solid #383838;
+            color: var(--color-texto-principal);
+            font-size: 1em;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+            border-radius: 4px;
+        }
+        .payment-option-btn:hover {
+            background-color: #333;
+            border-color: var(--color-texto-secundario);
+        }
+        .payment-option-btn:disabled {
+            background-color: #555;
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366; 
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.4);
+            z-index: 100;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+        
+        /* ================================================= */
+        /* --- ESTILOS RESPONSIVOS PARA MÓVILES --- */
+        /* ================================================= */
+        @media (max-width: 768px) {
+            
+            /* --- AJUSTES EN CABECERA --- */
+            header {
+                padding: 15px 20px;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .header-left {
+                flex-grow: 1;
+            }
+
+            .logo {
+                font-size: 1.2em; /* Reducir tamaño del logo */
+            }
+
+            .header-right {
+                gap: 15px; /* Reducir espacio entre nav y carrito */
+            }
+
+            nav ul {
+                gap: 15px; /* Reducir espacio entre links de nav */
+            }
+
+            nav a {
+                font-size: 0.8em;
+                letter-spacing: 0.5px;
+            }
+
+            /* --- AJUSTES EN SECCIÓN HERO --- */
+            .hero-title {
+                 margin: 0 0 30px 0;
+            }
+
+            .discounts-container {
+                flex-direction: column; /* Apilar los descuentos verticalmente */
+                align-items: center;
+                gap: 20px;
+                margin-bottom: 40px;
+            }
+
+            .discount-item {
+                width: 200px; /* Ancho fijo para mejor consistencia */
+            }
+
+            .hero-button {
+                padding: 15px 30px;
+                font-size: 1em;
+            }
+
+            /* --- AJUSTES EN GALERÍA DE PRODUCTOS --- */
+            .product-gallery {
+                padding: 40px 20px;
+            }
+
+            .product-gallery h2 {
+                font-size: 1.5em;
+                margin-bottom: 30px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            /* --- AJUSTES MODAL DEL CARRITO --- */
+            .modal-content {
+                padding: 20px;
+                width: 95%; /* Ocupar casi todo el ancho */
+                max-height: 90vh; /* Permitir más altura vertical */
+            }
+
+            .modal-header h2 {
+                font-size: 1.5em;
+            }
+        }
+
+         @media (max-width: 480px) {
+            /* --- AJUSTES FINOS PARA PANTALLAS PEQUEÑAS --- */
+            .header-right {
+                gap: 10px;
+            }
+            
+            nav ul {
+                gap: 10px;
+            }
+            nav a {
+                font-size: 0.75em;
+                padding-bottom: 2px;
+            }
+
+            .logo {
+                font-size: 1.1em;
+            }
+
+            .product-grid {
+                /* Asegura que haya 1 columna si el espacio es muy reducido */
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+
+            .product-card img {
+                height: 300px; /* Reducir altura de la imagen en tarjetas */
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .cart-item-actions {
+                align-self: flex-end; /* Alinear acciones a la derecha */
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <div class="logo">
+                PUNTO FORA
+                <span class="logo-dot"></span>
+            </div>
+        </div>
+        <div class="header-right">
+            <nav>
+                <ul>
+                    <li><a href="#men-products" class="nav-link active" data-target="men-products">HOMBRE</a></li>
+                    <li><a href="#women-products" class="nav-link" data-target="women-products">MUJER</a></li>
+                    <li><a href="#">OFERTAS</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon" id="cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M0 24C0 10.7 10.7 0 24 0H48.1c16.2 0 30.7 10.2 35.7 25.5L118.8 96H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H128.4L110.3 224H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H100.3c-16.2 0-30.7-10.2-35.7-25.5L25.3 64H24C10.7 64 0 53.3 0 40s10.7-16 24-16H25.3zM160 384c-35.3 0-64 28.7-64 64s28.7 64 64 64 64-28.7 64-64-28.7-64-64-64zm320 0c-35.3 0-64 28.7-64 64s28.7 64 64 64 64-28.7 64-64-28.7-64-64-64z"/></svg>
+                <div class="cart-count" id="cart-count">0</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2 class="hero-subtitle">Especial</h2>
+                <h1 class="hero-title">PAPÁ</h1>
+                <div class="discounts-container">
+                    <div class="discount-item">
+                        <p class="discount-amount">10%</p>
+                        <p class="discount-condition">En segunda compra</p>
+                    </div>
+                    <div class="discount-item">
+                        <p class="discount-amount">15%</p>
+                        <p class="discount-condition">En tercer compra</p>
+                    </div>
+                </div>
+                <a href="#men-products" class="hero-button">Comprar Ahora</a>
+            </div>
+        </section>
+
+        <section id="men-products" class="product-gallery">
+            <h2>HOMBRE</h2>
+            <div class="product-grid"></div>
+        </section>
+
+        <section id="women-products" class="product-gallery">
+            <h2>MUJER</h2>
+            <div class="product-grid"></div>
+        </section>
+    </main>
+    
+    <div id="cart-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Tu Carrito</h2>
+                <button class="close-modal-btn" data-target="cart-modal">&times;</button>
+            </div>
+            <div id="cart-items-list" class="cart-items-list"></div>
+            <div class="cart-footer">
+                <div id="cart-summary">
+                    <div class="summary-line">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal-price">$0 COP</span>
+                    </div>
+                    <div class="summary-line discount-line" style="display: none;">
+                        <span>Descuento (<span id="discount-percentage">0</span>%):</span>
+                        <span id="cart-discount-price">-$0 COP</span>
+                    </div>
+                    <div class="summary-line total-line">
+                        <span>Total:</span>
+                        <span id="cart-total-price">$0 COP</span>
+                    </div>
+                </div>
+                <button id="checkout-btn" class="checkout-btn" disabled>Pagar</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="payment-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Completa tu pedido</h2>
+                <button class="close-modal-btn" data-target="payment-modal">&times;</button>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label for="shipping-address" style="display: block; margin-bottom: 8px; font-size: 0.9em; color: var(--color-texto-secundario);">Dirección de Envío Completa:</label>
+                <input type="text" id="shipping-address" placeholder="Ej: Carrera 10 #20-30, Apto 501, Bogotá" style="width: 100%; padding: 12px; background-color: #333; border: 1px solid #444; color: var(--color-texto-principal); border-radius: 2px; box-sizing: border-box;">
+            </div>
+
+            <div class="payment-options">
+                <button class="payment-option-btn" data-method="Nequi">Pagar con Nequi</button>
+                <button class="payment-option-btn" data-method="PSE">Pagar con PSE</button>
+                <button class="payment-option-btn" data-method="Daviplata">Pagar con Daviplata</button>
+                <button class="payment-option-btn" data-method="Efectivo contraentrega">Pagar Contraentrega</button>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/message/4VCFY3DP33CJC1" class="whatsapp-float" target="_blank">
+        <img src="ChatGPT Image 19 jun 2025, 03_31_01.png" alt="Contactar por WhatsApp">
+    </a>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // --- LISTAS DE PRODUCTOS (PRECIOS ACTUALIZADOS) ---
+        const productosHombre = [
+                { id: 'H01', nombre: 'Chaqueta Columbia - Tono Rojo Intenso', precio: '132.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.44 PM.jpeg', trending: true },
+                { id: 'H02', nombre: 'Chaqueta Columbia – Tono Negro Clásico', precio: '132.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.45 PM.jpeg', trending: true },
+                { id: 'H03', nombre: 'Chaqueta Columbia - Tono arena suave', precio: '132.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.43 PM.jpeg' },
+                { id: 'H04', nombre: 'Chaqueta Columbia - Tono negro profundo con base gris', precio: '132.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.201.43 PM.jpeg' },
+                { id: 'H05', nombre: 'Chaqueta The North Face - Tono Rojo Intenso', precio: '132.000 COP', imagen: 'Captura de pantalla 2025-06-18 123844.png' },
+                { id: 'H06', nombre: 'Chaqueta Polo Ralph Lauren - Tono Blanco Marfil en Acabado Premium', precio: '121.000 COP', imagen: '5118a113-9fa1-4399-b527-09360d3621ca.jpeg' },
+                { id: 'H07', nombre: 'Chaqueta Polo Ralph Lauren - Tono Rojo Intenso en Acabado Premium', precio: '121.000 COP', imagen: '869c558e-3068-43dd-9fe3-918e9689daab.jpeg' },
+                { id: 'H08', nombre: 'Chaqueta Polo Ralph Lauren - Tono Azul Noche en Acabado Premium', precio: '121.000 COP', imagen: '44ea529a-0c79-4050-aad3-b5c55dfc7ce0.jpeg' },
+                { id: 'H09', nombre: 'Chaqueta Deportiva BMW x Puma - Tono celeste hielo', precio: '110.000 COP', imagen: 'ccc2bb60-7bd3-491e-8d4e-04e2af209700.jpeg' },
+                { id: 'H10', nombre: 'Chaqueta Deportiva Ferrari x Puma - Tono Rojo con negro intenso', precio: '110.000 COP', imagen: 'a24f9888-fd37-4d73-b586-c77ee9146e57.jpeg' },
+                { id: 'H11', nombre: 'Chaqueta Deportiva BMW x Puma - Tono amarillo racing con negro carbon', precio: '110.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.48 PM.jpeg' },
+                { id: 'H12', nombre: 'Chaqueta Deportiva Mercedez Benz x Puma - Tono gris plata con negro carbon', precio: '110.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.47 PM.jpeg' },
+                { id: 'H13', nombre: 'Chaqueta Deportiva Ferrari x Puma - Tono negro carbon con rojo intenso', precio: '110.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.47 PM (1).jpeg' },
+                { id: 'H14', nombre: 'Chaqueta Deportiva Mercedez Benz x Puma - Tono negro carbon con arena militar', precio: '110.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.46 PM.jpeg' },
+                { id: 'H15', nombre: 'Chaqueta Deportiva Mercedes Benz x Puma - Tono azul cielo con gris claro', precio: '110.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.46 PM (1).jpeg' },
+                { id: 'H16', nombre: 'Chaqueta Deportiva Ferrari x Puma - Tono rojo intenso', precio: '110.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.46 PM (2).jpeg' },
+                { id: 'H17', nombre: 'Chaqueta Deportiva BMW x Puma - Tono negro carbon con amarillo sport', precio: '110.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.46 PM (3).jpeg' },
+                { id: 'H18', nombre: 'Chaqueta Deportiva Mercedes Benz x Puma - Tono arena militar con negro carbon', precio: '110.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.45 PM (1).jpeg' },
+                { id: 'H19', nombre: 'Chaqueta Deportiva Ferrari x Puma - Tono verde militar', precio: '110.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.01.45 PM (2).jpeg' },
+                { id: 'H20', nombre: 'Buso Maryland - Diferentes Colores', precio: '77.000 COP', imagen: 'Captura de pantalla 2025-06-18 190815.png' }
+            ];
+
+            const productosMujer = [
+                { id: 'M11', nombre: 'Chaqueta The North Face Doble Faz - Tono beige con capucha forrada peluche', precio: '154.000 COP', imagen: 'Captura de pantalla 2025-06-19 033310.jpeg', trending: true },
+                { id: 'M12', nombre: 'Chaqueta The North Face Doble Faz - Tono en negro carbon con capucha forrada peluche', precio: '154.000 COP', imagen: 'Captura de pantalla 2025-06-19 064934.jpeg', trending: true },
+                { id: 'M01', nombre: 'Conjunto Deportivo - Top y Leggins Tono negro grafito', precio: '55.000 COP', imagen: 'w1.png' },
+                { id: 'M02', nombre: 'Conjunto Deportivo - Top y Leggins Tono verde menta pastel', precio: '55.000 COP', imagen: 'w3.png' },
+                { id: 'M03', nombre: 'Conjunto Deportivo - Top y Leggins Tono azul celeste mate', precio: '55.000 COP', imagen: 'w2.png' },
+                { id: 'M04', nombre: 'Conjunto Deportivo - Top y Leggins Tono lila lavanda', precio: '55.000 COP', imagen: 'w4.png' },
+                { id: 'M05', nombre: 'Conjunto Deportivo - Top y Leggins Tono negro absoluto', precio: '55.000 COP', imagen: 'WhatsApp Image 2025-06-17 at 1.02.07 PM.jpeg' },
+                { id: 'M06', nombre: 'Conjunto Deportivo - Top y Leggins Tono morado humo', precio: '55.000 COP', imagen: 'Captura de pantalla 2025-06-18 205800.jpeg' },
+                { id: 'M07', nombre: 'Conjunto Deportivo - Top y Leggins Estampado geometrico blanco y negro', precio: '55.000 COP', imagen: 'Captura de pantalla 2025-06-18 205917.jpeg' },
+                { id: 'M08', nombre: 'Conjunto Deportivo - Top y Leggins Estampado beige abstracto', precio: '55.000 COP', imagen: 'Captura de pantalla 2025-06-18 205955.jpeg' },
+                { id: 'M09', nombre: 'Conjunto Deportivo - Top y Leggins Estampado tropical blanco y azul oscuro', precio: '55.000 COP', imagen: 'Captura de pantalla 2025-06-18 210110.jpeg' },
+                { id: 'M10', nombre: 'Conjunto Deportivo - Top y Leggins Estampado tipografico urbano', precio: '55.000 COP', imagen: 'Captura de pantalla 2025-06-18 210304.jpeg' },
+                { id: 'M13', nombre: 'Chaleco acolchado - Tono rojo cereza con acabados brillantes', precio: '55.000 COP', imagen: 'c8391806-f26f-490b-8855-73485fe8adb1.png' },
+                { id: 'M14', nombre: 'Chaleco acolchado - Tono lila pastel con ajuste de cintura', precio: '55.000 COP', imagen: 'Captura de pantalla 2025-06-19 065634.jpeg' },
+                { id: 'M15', nombre: 'Chaleco acolchado - Tono rosa pastel con ajuste de cintura', precio: '55.000 COP', imagen: 'Captura de pantalla 2025-06-19 065925.jpeg' },
+                { id: 'M16', nombre: 'Chaleco acolchado - Tono verde petroleo con ajuste de cintura', precio: '55.000 COP', imagen: 'Captura de pantalla 2025-06-19 070045.jpeg' },
+                { id: 'M17', nombre: 'Chaleco acolchado - Tono rosa metalico con acabado satinado', precio: '55.000 COP', imagen: 'Captura de pantalla 2025-06-19 070316.jpeg' }
+            ];
+
+        const allProducts = [...productosHombre, ...productosMujer];
+        let cart = [];
+
+        // --- INICIO DE LA LÓGICA DE LA TIENDA ---
+
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbybqp3ZOnyIY1Zz-91X_jbJ-HWcvUdexgyZySHiMePhWhLWxR5nZgZUi4-4Teca7DSslA/exec'; 
+
+        function renderProducts(products, containerSelector) {
+            const container = document.querySelector(containerSelector);
+            if (!container) return;
+            container.innerHTML = products.map(product => `
+                <div class="product-card" data-id="${product.id}">
+                    ${product.trending ? '<div class="trending-badge">🔥 En Tendencia</div>' : ''}
+                    <img src="${product.imagen}" alt="${product.nombre}">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.nombre}</h3>
+                        <p class="product-price">${product.precio}</p>
+                        <button class="add-to-cart-btn">Agregar al Carrito</button>
+                    </div>
+                </div>`).join('');
+        }
+
+        renderProducts(productosHombre, '#men-products .product-grid');
+        renderProducts(productosMujer, '#women-products .product-grid');
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        const productGalleries = document.querySelectorAll('.product-gallery');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                const targetId = this.getAttribute('data-target');
+                if (!targetId) return;
+                event.preventDefault();
+                const targetElement = document.getElementById(targetId);
+                if (!targetElement) return;
+                productGalleries.forEach(gallery => { gallery.style.display = 'none'; });
+                targetElement.style.display = 'block';
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        const cartModal = document.getElementById('cart-modal');
+        const paymentModal = document.getElementById('payment-modal');
+        const cartIcon = document.getElementById('cart-icon');
+        const cartCount = document.getElementById('cart-count');
+        const cartItemsList = document.getElementById('cart-items-list');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        
+        const cartSubtotalPrice = document.getElementById('cart-subtotal-price');
+        const cartDiscountPrice = document.getElementById('cart-discount-price');
+        const cartTotalPrice = document.getElementById('cart-total-price');
+        const discountLine = document.querySelector('.discount-line');
+        const discountPercentageSpan = document.getElementById('discount-percentage');
+
+        function toggleModal(modalId, show) {
+            document.getElementById(modalId).classList.toggle('visible', show);
+        }
+
+        cartIcon.addEventListener('click', () => toggleModal('cart-modal', true));
+        document.querySelectorAll('.close-modal-btn').forEach(btn => {
+            btn.addEventListener('click', () => toggleModal(btn.dataset.target, false));
+        });
+
+        function renderCart() {
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = '<p class="cart-empty-message">Tu carrito está vacío</p>';
+            } else {
+                cartItemsList.innerHTML = cart.map(item => {
+                    const product = allProducts.find(p => p.id === item.id);
+                    return `
+                        <div class="cart-item" data-id="${item.id}">
+                            <img src="${product.imagen}" alt="${product.nombre}">
+                            <div class="cart-item-info">
+                                <p class="name">${product.nombre}</p>
+                                <p class="price">${product.precio}</p>
+                            </div>
+                            <div class="cart-item-actions">
+                                <input type="number" value="${item.quantity}" min="1" class="item-quantity">
+                                <button class="remove-item-btn">&times;</button>
+                            </div>
+                        </div>`;
+                }).join('');
+            }
+            updateCartTotals();
+        }
+
+        function updateCartTotals() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => {
+                const product = allProducts.find(p => p.id === item.id);
+                const price = parseFloat(product.precio.replace(/\./g, '').replace(' COP', ''));
+                return sum + (price * item.quantity);
+            }, 0);
+
+            let discountPercentage = 0;
+            if (totalItems === 2) {
+                discountPercentage = 10;
+            } else if (totalItems >= 3) {
+                discountPercentage = 15;
+            }
+
+            const discountAmount = subtotal * (discountPercentage / 100);
+            const finalTotal = subtotal - discountAmount;
+
+            cartSubtotalPrice.innerText = `$${subtotal.toLocaleString('es-CO')} COP`;
+            cartCount.innerText = totalItems;
+            checkoutBtn.disabled = cart.length === 0;
+
+            if (discountAmount > 0) {
+                discountPercentageSpan.innerText = discountPercentage;
+                cartDiscountPrice.innerText = `-$${discountAmount.toLocaleString('es-CO')} COP`;
+                discountLine.style.display = 'flex';
+            } else {
+                discountLine.style.display = 'none';
+            }
+
+            cartTotalPrice.innerText = `$${finalTotal.toLocaleString('es-CO')} COP`;
+        }
+
+        document.body.addEventListener('click', function(event) {
+            if (event.target.classList.contains('add-to-cart-btn')) {
+                const productId = event.target.closest('.product-card').dataset.id;
+                const existingItem = cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({ id: productId, quantity: 1 });
+                }
+                renderCart();
+                toggleModal('cart-modal', true);
+            }
+            if (event.target.classList.contains('remove-item-btn')) {
+                const productId = event.target.closest('.cart-item').dataset.id;
+                cart = cart.filter(item => item.id !== productId);
+                renderCart();
+            }
+        });
+        
+        cartItemsList.addEventListener('change', function(event) {
+            if (event.target.classList.contains('item-quantity')) {
+                const productId = event.target.closest('.cart-item').dataset.id;
+                const newQuantity = parseInt(event.target.value, 10);
+                const cartItem = cart.find(item => item.id === productId);
+                if (newQuantity > 0) {
+                    cartItem.quantity = newQuantity;
+                } else {
+                    cart = cart.filter(item => item.id !== productId);
+                }
+                renderCart();
+            }
+        });
+        
+        checkoutBtn.addEventListener('click', () => {
+            toggleModal('cart-modal', false);
+            toggleModal('payment-modal', true);
+        });
+        
+        document.querySelectorAll('.payment-option-btn').forEach(btn => {
+            btn.addEventListener('click', (event) => {
+                const originalButtonText = event.target.innerText;
+                event.target.innerText = "Procesando...";
+                event.target.disabled = true;
+
+                const addressInput = document.getElementById('shipping-address');
+                if (addressInput.value.trim() === "") {
+                    alert("Por favor, ingresa tu dirección de envío.");
+                    event.target.innerText = originalButtonText;
+                    event.target.disabled = false;
+                    addressInput.focus();
+                    return;
+                }
+                
+                const subtotal = cart.reduce((sum, item) => {
+                    const product = allProducts.find(p => p.id === item.id);
+                    const price = parseFloat(product.precio.replace(/\./g, '').replace(' COP', ''));
+                    return sum + (price * item.quantity);
+                }, 0);
+
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                let discountPercentage = 0;
+                if (totalItems === 2) {
+                    discountPercentage = 10;
+                } else if (totalItems >= 3) {
+                    discountPercentage = 15;
+                }
+
+                const discountAmount = subtotal * (discountPercentage / 100);
+                const finalTotal = subtotal - discountAmount;
+
+                const paymentMethod = btn.dataset.method;
+                const itemsText = cart.map(item => `${item.quantity}x ${allProducts.find(p => p.id === item.id).nombre}`).join(', ');
+                
+                const subtotalFormatted = `$${subtotal.toLocaleString('es-CO')} COP`;
+                const discountFormatted = `-$${discountAmount.toLocaleString('es-CO')} COP`;
+                const totalFormatted = `$${finalTotal.toLocaleString('es-CO')} COP`;
+
+                const orderData = {
+                    items: itemsText,
+                    paymentMethod: paymentMethod,
+                    total_formateado: totalFormatted,
+                    total_numerico: finalTotal,
+                    address: addressInput.value.trim()
+                };
+
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: JSON.stringify(orderData)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Respuesta de Google Sheets:", data);
+                    
+                    let summaryText = `*Subtotal:* ${subtotalFormatted}\n`;
+                    if (discountAmount > 0) {
+                        summaryText += `*Descuento (${discountPercentage}%):* ${discountFormatted}\n`;
+                    }
+                    summaryText += `\n*TOTAL A PAGAR:* ${totalFormatted}`;
+
+                    const message = `Hola PUNTO FORA, 👋\n\nQuisiera confirmar mi pedido con ID *${data.orderId}*:\n\n*RESUMEN:*\n${itemsText}\n\n*DETALLES DEL PAGO:*\n${summaryText}\n\n*DIRECCIÓN DE ENVÍO:*\n${orderData.address}\n\n*MÉTODO DE PAGO ELEGIDO:*\n${paymentMethod}\n\nQuedo atento/a para coordinar. ¡Gracias!`;
+                    
+                    const tuNumeroDeWhatsapp = '573192592949';
+                    const whatsappURL = `https://wa.me/${tuNumeroDeWhatsapp}?text=${encodeURIComponent(message)}`;
+
+                    window.open(whatsappURL, '_blank');
+
+                    toggleModal('payment-modal', false);
+                    addressInput.value = '';
+                    cart = [];
+                    renderCart();
+                })
+                .catch(error => {
+                    console.error('Error al enviar a Google Sheets:', error);
+                    alert('Hubo un error al procesar tu pedido. Por favor, intenta de nuevo.');
+                })
+                .finally(() => {
+                    event.target.innerText = originalButtonText;
+                    event.target.disabled = false;
+                });
+            });
+        });
+
+    });
+    </script>
+</body>
+</html>
