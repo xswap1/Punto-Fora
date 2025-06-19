@@ -535,6 +535,33 @@
             height: 35px;
         }
         
+        /* --- INICIO: NUEVOS ESTILOS PARA FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 50px 40px;
+            margin-top: 60px;
+            border-top: 1px solid #282828;
+            color: var(--color-texto-secundario);
+        }
+
+        footer h3 {
+            font-family: var(--font-secundaria);
+            font-size: 1.1em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-texto-principal);
+            margin-bottom: 20px;
+        }
+
+        footer p {
+            font-size: 0.85em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 10px auto;
+        }
+        /* --- FIN: NUEVOS ESTILOS PARA FOOTER --- */
+
         /* ================================================= */
         /* --- ESTILOS RESPONSIVOS PARA MÓVILES --- */
         /* ================================================= */
@@ -613,6 +640,12 @@
 
             .modal-header h2 {
                 font-size: 1.5em;
+            }
+
+             /* --- AJUSTES FOOTER --- */
+            footer {
+                padding: 40px 20px;
+                margin-top: 40px;
             }
         }
 
@@ -712,6 +745,11 @@
         </section>
     </main>
     
+    <footer>
+        <h3>Términos de Uso</h3>
+        <p>Punto Fora es una tienda de moda que comercializa prendas importadas tipo 1:1 y AAA. Nuestros productos son de alta calidad y están inspirados en diseños de marcas reconocidas a nivel mundial. No somos distribuidores oficiales ni tenemos afiliación con dichas marcas.</p>
+        <p>Todos los nombres de marcas, logotipos o referencias utilizados en esta tienda tienen únicamente fines descriptivos o referenciales. Las marcas mencionadas pertenecen a sus respectivos titulares de derechos y no reclamamos propiedad ni relación comercial con ellos.</p>
+    </footer>
     <div id="cart-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
